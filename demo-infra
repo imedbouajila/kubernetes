@@ -1,0 +1,23 @@
+1- creation clé ssh : ssh-keygen -t rsa
+2- installation openssh server : sudo apt install openssh-server
+3- copy la clé ssh dans les serveurs cibles : ssh-copy-id -i ~/.ssh/id_rsa devops@192.168.1.73
+master 192.168.1.43
+node1 192.168.1.63
+node2 192.168.1.95
+node3 192.168.1.73
+4- configuration de fichier /etc/ssh/ssh_config
+PubkeyAuthentication yes
+
+5- rdemarrage de service ssh : sudo systemctl restart sshd.service
+
+6- fixer les ip : https://fr.techtribune.net/linux/comment-configurer-une-adresse-ip-statique-sur-ubuntu-20-04/56906/
+
+7- mettre Les alias de SSH : ~/.ssh/config
+# Server node1
+Host node1
+HostName 192.168.1.63
+User devops
+IdentityFile ~/.ssh/id_rsa
+Port 22
+
+
