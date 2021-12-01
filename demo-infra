@@ -19,5 +19,6 @@ HostName 192.168.1.63
 User devops
 IdentityFile ~/.ssh/id_rsa
 Port 22
-
+#Dimension de la fenêtre
+xrandr -s 1440x900
 

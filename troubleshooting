@@ -1,0 +1,4 @@
+sudo systemctl daemon-reload
+sudo systemctl restart containerd
+sudo systemctl restart kubelet
+sudo systemctl restart kube-proxy
