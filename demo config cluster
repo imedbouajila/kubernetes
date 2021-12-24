@@ -16,7 +16,18 @@ curl https://docs.projectcalico.org/manifests/calico.yaml -O
 #range dosen't overlap with other networks in our infrastructure
 
 vi calico.yaml
+kubectl apply -f https://docs.projectcalico.org/v3.8/manifests/calico.yaml
+#witch cidr
+CALICO_KUBECONFIG=~/.kube/config DATASTORE_TYPE=kubernetes calicoctl get ippool -o wide --allow-version-mismatch
+or kubectl get ippools -o yaml
+#AME                  CIDR             NAT    IPIPMODE   VXLANMODE   DISABLED   DISABLEBGPEXPORT   SELECTOR   
+#default-ipv4-ippool   192.168.0.0/16   true   Always     Never       false      false              all() 
+#pb:Calico requires net.ipv4.conf.all.rp_filter to be set to 0 or 1
+kubectl -n kube-system set env daemonset/calico-node FELIX_IGNORELOOSERPF=true 
+sudo ./calicoctl node status
 
+
+How to remove extra host only network interfaces 
 #Generate a default kubeadm init configuration file ...this defines the settings of the cluster being built.
 #if you get a warning about how docker is not installed ...this is ok to ignre ans is a bug in kubeadm
 #for more info on kubeconfig configuration files see:
@@ -56,6 +67,9 @@ vi ClusterConfiguration.yaml
 sudo kubeadm init \
     --config=ClusterConfiguration.yaml \
     --cri-socket /run/containerd/containerd.sock
+sudo kubeadm init \
+    --config=ClusterConfiguration.yaml \
+    --cri-socket /var/run/dockershim.sock
 
 ### restultat ##"kubeadm join 192.168.1.43:6443 --token abcdef.0123456789abcdef \
 ##    --discovery-token-ca-cert-hash sha256:e870533550220ca2cc784655fb956fdde8ad4644b04795e487f9d0c54025dad8 
@@ -113,12 +127,11 @@ ls /etc/kubernetes
 #kubectl delete pods --all
 #kubectl get namespaces
 #kubectl config get-contexts # current namespace 
-#kubectl config set-context --current --namespace=kubernetes-admin@kubernetes change to namespace 
 #kubectl describe pod
 #kubectl describe pod calico-kube-controllers-59f54d6bbc-gbj95 --namespace=kube-system
 #kubectl logs calico-node-f8hb5 --namespace=kube-system
 #sudo du -ahxd 1 /  
-
+#kubectl config set-context --current --namespace
 
 
 

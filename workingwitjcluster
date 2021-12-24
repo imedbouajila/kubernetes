@@ -21,7 +21,7 @@ kubectl get pods --namespace kubesystem
 kubectl get pods --namespace kube-system -o wide
 
 #Now let's get a list of everything that's running in all namespaces
-"in additional to pods, we see services , deamonsets, deployments and replicasets
+#in additional to pods, we see services , deamonsets, deployments and replicasets
 kubectl get all --all-namespaces | more
 
 #asking kubernetes for the resources it know about
@@ -56,6 +56,8 @@ echo "source <(kubectl completion bash)" >> ~/.bashrc
 source ~/.bashrc
 kubectl g[tab][tab] po[tab][tab] --all[tab][tab]
 
+# diff 
+kubectl diff -f deployment.yaml
 
 
 

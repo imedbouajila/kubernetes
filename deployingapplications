@@ -19,13 +19,13 @@ kubectl apply -f deployment.yaml
 
 #generate the yaml for the service 
 kubectl expose deployment hello-world \
-	--port=80 --target-port=8080`\
+	--port=80 --target-port=8080\
 	--dry-run=client -o yaml | more
 
 
 #write the service yaml manifest to file  
 kubectl expose deployment hello-world \
-	--port=80 --target-port=8080`\
+	--port=80 --target-port=8080\
 	--dry-run=client -o yaml > service.yaml
 
 #the contents of the yaml file show the definition of the service
