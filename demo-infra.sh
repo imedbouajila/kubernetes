@@ -1,10 +1,10 @@
 1- creation clé ssh : ssh-keygen -t rsa
 2- installation openssh server : sudo apt install openssh-server
-3- copy la clé ssh dans les serveurs cibles : ssh-copy-id -i ~/.ssh/id_rsa devops@192.168.1.73
-master 192.168.1.43
-node1 192.168.1.63
-node2 192.168.1.95
-node3 192.168.1.73
+3- copy la clé ssh dans les serveurs cibles : ssh-copy-id -i ~/.ssh/id_rsa devops@172.16.18.80
+master 172.16.18.79
+node1 172.16.18.80
+node2 172.16.18.81
+node3 172.16.18.82
 4- configuration de fichier /etc/ssh/ssh_config
 PubkeyAuthentication yes
 
@@ -22,3 +22,5 @@ Port 22
 #Dimension de la fenêtre
 xrandr -s 1440x900
 
+# configuration de dhcl server et mettre le rang des adresses ips 
+https://www.malekal.com/comment-configurer-une-adresse-ip-sur-ubuntu/

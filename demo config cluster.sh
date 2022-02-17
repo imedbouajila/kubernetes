@@ -27,7 +27,7 @@ kubectl -n kube-system set env daemonset/calico-node FELIX_IGNORELOOSERPF=true
 sudo ./calicoctl node status
 
 
-How to remove extra host only network interfaces 
+#How to remove extra host only network interfaces 
 #Generate a default kubeadm init configuration file ...this defines the settings of the cluster being built.
 #if you get a warning about how docker is not installed ...this is ok to ignre ans is a bug in kubeadm
 #for more info on kubeconfig configuration files see:
@@ -42,7 +42,7 @@ kubeadm config print init-defaults | tee ClusterConfiguration.yaml
 #4. edit kubernetesVersion to match the version you installed in 0-PackageInstallation-containerd.sh
 
 #change the adress of the loclaAPIEndpoint.advertiseAddres to the control plane node's IP adress 
-sed -i 's/ advertiseAddress: 1.2.3.4/ advertiseAddress: 192.168.1.43/' ClusterConfiguration.yaml
+sed -i 's/ advertiseAddress: 1.2.3.4/ advertiseAddress: 172.16.18.79/' ClusterConfiguration.yaml
 
 #set the CRI Socket to point to containerd
 sed -i 's/ criSocket: \/var\/run\/dockershim\.sock/ criSocket: \/var\/run\/containerd\/containerd\.sock/' ClusterConfiguration.yaml
@@ -71,7 +71,7 @@ sudo kubeadm init \
     --config=ClusterConfiguration.yaml \
     --cri-socket /var/run/dockershim.sock
 
-### restultat ##"kubeadm join 192.168.1.43:6443 --token abcdef.0123456789abcdef \
+### restultat ##"kubeadm join 172.16.18.79:6443 --token abcdef.0123456789abcdef \
 ##    --discovery-token-ca-cert-hash sha256:e870533550220ca2cc784655fb956fdde8ad4644b04795e487f9d0c54025dad8 
 
 #Before moving on review the output of the cluster création process including the kubeadm init phases,

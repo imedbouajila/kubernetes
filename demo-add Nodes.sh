@@ -111,14 +111,14 @@ openssl x509 -pubkey -in /etc/kubernetes/pki/ca.crt | openssl rsa -pubin -outfro
 #you can also use print-join-command to generate token and print the join command in the proper format
 #copy this into your CLIPBOARD
 kubeadm token create --print-join-command 
-# => resultat :kubeadm join 192.168.1.43:6443 --token 77jmbp.k18gpaa6jfgtvmlx \
+# => resultat :kubeadm join 172.16.18.79:6443 --token 77jmbp.k18gpaa6jfgtvmlx \
 #    --discovery-token-ca-cert-hash sha256:e870533550220ca2cc784655fb956fdde8ad4644b04795e487f9d0c54025dad8 
 
 #back on the worker nod1, using the control plane node (api server) ip address or name, the token and the 
 ssh node1
 
 #Paste_join_command_here be sure to add sudo 
-sudo kubeadm join 192.168.1.43:6443 \
+sudo kubeadm join 172.16.18.79:6443 \
    --token gbdfob.h9sa6thcfra3vym9  \
    --discovery-token-ca-cert-hash sha256:e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855
 

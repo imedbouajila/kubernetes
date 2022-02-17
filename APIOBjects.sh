@@ -14,4 +14,17 @@ kubectl explain pods | more
 kubectl explain pod.spec | more
 kubectl explain pod.spec.containers | more
 
+#kubectl create deployement ngnix --image=nginx --dry-run=client
+#kubectl create deployement ngnix --image=nginx --dry-run=server
+
+#Combine dry-run client with -o yaml and you'il get the yaml for object...in this case a deployment
+kubectl create deployement nginx --image --dry-run=client -o yaml | more 
+kubectl create deployement nginx --image --dry-run=client -o yaml > deployment-generated.yaml
+#can be any object...let's try a pod..
+kubectl run pod nginx-pod --image --dry-run=client -o yaml | more
+#working with kubectl diff
+#create a deployment with 4 replicas
+kubectl applay -f deployement.yaml
+#diff that a deployment with 5 replicas and a new container image 
+kubectl diff -f deployment.yaml | more 
 
