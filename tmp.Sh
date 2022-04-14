@@ -60,3 +60,8 @@ to install specific verion of docker : https://docs.docker.com/engine/install/ub
 
 #	Here is one example how you may list all Kubernetes containers running in docker:
 docker ps -a | grep kube | grep -v pause
+
+
+#troubelshooting
+sudo apt purge kubeadm kubelet
+sudo kubeadm join 192.168.122.3:6443 --token 6p1e2x.lwbl99qzma3sve6g     --discovery-token-ca-cert-hash sha256:c450c0fe0d3fffdf0bd486f7e5c3dff886743b339445835eb30e348654af6ec6
