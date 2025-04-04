@@ -93,7 +93,7 @@ https://www.malekal.com/comment-configurer-une-adresse-ip-sur-ubuntu/
 
 
 
-==== new cluster
+#==== new cluster
 
 chmod 777 
 vi /etc/sudoers
